@@ -1,0 +1,16 @@
+{
+  "trace_id": "smoke-e3-microbench-conflict",
+  "run_id": "smoke-run",
+  "experiment": "E3.1",
+  "workload": "microbench",
+  "scenario": "conflict",
+  "variants": {
+    "n_concurrent": [8],
+    "transactions_per_run": 200,
+    "runs_per_config": 3,
+    "baselines": ["No-Tx", "No-Frontier", "Tx-Full"]
+  },
+  "resources": ["A", "B"],
+  "initial_state": {"A": 1000, "B": 1000},
+  "sequential_amount": 1
+}

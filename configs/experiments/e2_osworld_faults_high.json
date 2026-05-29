@@ -1,0 +1,20 @@
+{
+  "trace_id": "e2-osworld-faults-high",
+  "run_id": "local-run",
+  "experiment": "E2",
+  "workload": "osworld",
+  "result_dir": "results/osworld_faults_high",
+  "runner": {
+    "workdir": ".",
+    "script": "scripts/run_osworld_atomix.py",
+    "args": {
+      "demo": false,
+      "task": "bb5e4c0d-f964-439c-97b6-bdb9747de3f4",
+      "provider": "docker",
+      "headless": true,
+      "max-steps": 100,
+      "fault-probability": 0.05,
+      "fault-after-apply": true
+    }
+  }
+}

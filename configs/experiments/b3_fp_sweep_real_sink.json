@@ -1,0 +1,6 @@
+{
+  "trace_id": "b3-fp-sweep-real-sink",
+  "run_id": "local-run",
+  "experiment": "E4-fp-sweep",
+  "workload": "b3_fp_sweep"
+}

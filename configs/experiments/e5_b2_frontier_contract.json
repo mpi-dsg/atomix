@@ -1,0 +1,6 @@
+{
+  "trace_id": "e5-b2-frontier-contract",
+  "run_id": "local-run",
+  "experiment": "E5-B2",
+  "workload": "frontier_contract"
+}

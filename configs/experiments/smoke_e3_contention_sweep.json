@@ -1,0 +1,14 @@
+{
+  "trace_id": "smoke-e3-contention",
+  "run_id": "smoke-run",
+  "experiment": "E3.4",
+  "workload": "contention_sweep",
+  "variants": {
+    "zipf_alpha": [0.0, 1.0],
+    "runs_per_config": 5,
+    "baselines": ["No-Tx", "Tx-Full"],
+    "transactions_per_run": 200,
+    "n_concurrent": [8]
+  },
+  "resources": ["R1", "R2", "R3", "R4", "R5", "R6", "R7", "R8", "R9", "R10"]
+}

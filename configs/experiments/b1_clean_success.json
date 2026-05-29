@@ -1,0 +1,6 @@
+{
+  "trace_id": "b1-clean-success",
+  "run_id": "local-run",
+  "experiment": "E1",
+  "workload": "clean_success"
+}

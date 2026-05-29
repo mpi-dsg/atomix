@@ -1,0 +1,8 @@
+# Convenience requirements for a full local development checkout.
+#
+# The canonical dependency metadata lives in pyproject.toml. For a smaller
+# install, prefer one of:
+#   pip install -e .
+#   pip install -e '.[dev]'
+#   pip install -e '.[dev,langgraph,plots]'
+-e .[dev,langgraph,plots,sinks,llm,osworld,webarena,swebench]

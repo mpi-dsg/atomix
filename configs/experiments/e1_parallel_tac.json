@@ -1,0 +1,15 @@
+{
+  "trace_id": "e1-parallel-tac",
+  "run_id": "local-run",
+  "experiment": "E1",
+  "workload": "theagentcompany",
+  "result_dir": "results/tac",
+  "runner": {
+    "script": "evaluation/run_eval.sh",
+    "args": {
+      "outputs_path": "results/tac",
+      "server_hostname": "localhost",
+      "version": "1.0.0"
+    }
+  }
+}

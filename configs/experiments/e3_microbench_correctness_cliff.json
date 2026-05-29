@@ -1,0 +1,17 @@
+{
+  "trace_id": "e3-microbench-correctness-cliff",
+  "run_id": "full-run",
+  "experiment": "E3",
+  "workload": "microbench",
+  "scenario": "random",
+  "resources": ["A", "B"],
+  "initial_state": {"A": 100, "B": 100},
+  "transfer": {"min": 1, "max": 150},
+  "variants": {
+    "n_concurrent": [2, 4, 8, 16],
+    "transactions_per_run": 1000,
+    "zipf_alpha": [2.0],
+    "runs_per_config": 30,
+    "baselines": ["No-Tx", "No-Frontier", "Tx-Full"]
+  }
+}

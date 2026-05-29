@@ -1,0 +1,6 @@
+{
+  "trace_id": "e9-correlated",
+  "run_id": "local-run",
+  "experiment": "E9",
+  "workload": "correlated_sensitivity"
+}

@@ -1,0 +1,16 @@
+{
+  "trace_id": "e3-microbench-conflict",
+  "run_id": "local-run",
+  "experiment": "E3.1",
+  "workload": "microbench",
+  "scenario": "conflict",
+  "variants": {
+    "n_concurrent": [8, 16, 32],
+    "transactions_per_run": 500,
+    "runs_per_config": 10,
+    "baselines": ["No-Tx", "Tx-Full"]
+  },
+  "resources": ["A", "B"],
+  "initial_state": {"A": 1000, "B": 1000},
+  "sequential_amount": 1
+}

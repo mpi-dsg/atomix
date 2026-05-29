@@ -1,0 +1,11 @@
+{
+  "trace_id": "e3-fault-recovery",
+  "run_id": "local-run",
+  "experiment": "E3.5",
+  "workload": "fault_recovery",
+  "variants": {
+    "n_steps": 10,
+    "fault_probabilities": [0.0, 0.1, 0.3, 0.5],
+    "runs_per_config": 100
+  }
+}

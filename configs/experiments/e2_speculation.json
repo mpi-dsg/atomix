@@ -1,0 +1,20 @@
+{
+  "trace_id": "e2-speculation",
+  "run_id": "local-run",
+  "experiment": "E2",
+  "workload": "speculation",
+  "variants": {
+    "k_branches": [2, 4, 8],
+    "baselines": ["No-Tx", "Tx-Full"],
+    "runs_per_config": 5
+  },
+  "tasks": {
+    "source": "webarena",
+    "count": 30,
+    "selector": "consequential"
+  },
+  "observer": {
+    "poll_ms": 500,
+    "snapshot_target": "webarena"
+  }
+}

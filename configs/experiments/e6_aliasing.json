@@ -1,0 +1,6 @@
+{
+  "trace_id": "e6-aliasing",
+  "run_id": "local-run",
+  "experiment": "E6",
+  "workload": "aliasing"
+}

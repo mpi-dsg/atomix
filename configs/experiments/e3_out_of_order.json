@@ -1,0 +1,16 @@
+{
+  "trace_id": "e3-out-of-order",
+  "run_id": "local-run",
+  "experiment": "E3.2",
+  "workload": "out_of_order",
+  "variants": {
+    "delay_variance": ["low", "high"],
+    "runs_per_config": 50,
+    "baselines": ["No-Tx", "No-Frontier", "Tx-Full"],
+    "transactions_per_run": 2000
+  },
+  "delay_ranges_ms": {
+    "low": [0, 50],
+    "high": [0, 500]
+  }
+}

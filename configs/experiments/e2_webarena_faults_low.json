@@ -1,0 +1,20 @@
+{
+  "trace_id": "e2-webarena-faults-low",
+  "run_id": "local-run",
+  "experiment": "E2",
+  "workload": "webarena",
+  "result_dir": "results/webarena_faults_low",
+  "runner": {
+    "script": "run.py",
+    "args": {
+      "test_start_idx": 0,
+      "test_end_idx": 50,
+      "instruction_path": "agent/prompts/jsons/p_cot_id_actree_2s.json",
+      "result_dir": "results/webarena_faults_low",
+      "model": "gpt-4o-mini",
+      "provider": "openai",
+      "fault_probability": 0.01,
+      "fault_after_apply": true
+    }
+  }
+}

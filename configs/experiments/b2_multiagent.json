@@ -1,0 +1,6 @@
+{
+  "trace_id": "b2-multiagent",
+  "run_id": "local-run",
+  "experiment": "E2",
+  "workload": "multiagent_taubench"
+}

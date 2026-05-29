@@ -1,0 +1,6 @@
+{
+  "trace_id": "e5-b1-semantic",
+  "run_id": "local-run",
+  "experiment": "E5-B1",
+  "workload": "semantic_boundary"
+}

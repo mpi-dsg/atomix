@@ -1,0 +1,14 @@
+{
+  "trace_id": "smoke-e2-speculation",
+  "run_id": "smoke-run",
+  "experiment": "E2",
+  "workload": "speculation",
+  "variants": {
+    "k_branches": [2],
+    "baselines": ["No-Tx", "Tx-Full"],
+    "runs_per_config": 3
+  },
+  "observer": {
+    "poll_ms": 300
+  }
+}

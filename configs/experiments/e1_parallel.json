@@ -1,0 +1,17 @@
+{
+  "trace_id": "e1-parallel",
+  "run_id": "local-run",
+  "experiment": "E1",
+  "workload": "synthetic_parallel",
+  "variants": {
+    "n_agents": [1, 2, 4, 8, 16],
+    "contention": ["low", "high", "mixed"],
+    "baselines": ["No-Tx", "No-Frontier", "Tx-Full"],
+    "runs_per_config": 5
+  },
+  "resources": ["R1", "R2", "R3", "R4", "R5", "R6", "R7", "R8", "R9", "R10"],
+  "tasks": {
+    "transactions_per_agent": 20,
+    "zipf_alpha": 1.0
+  }
+}

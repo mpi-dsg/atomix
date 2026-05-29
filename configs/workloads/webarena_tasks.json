@@ -1,0 +1,24 @@
+{
+  "trace_id": "webarena-demo",
+  "tasks": [
+    {
+      "id": "wa-1",
+      "name": "click-button-demo",
+      "steps": [
+        {
+          "tool": "webarena_action",
+          "args": {
+            "site": "demo",
+            "page_id": "home",
+            "action_type": "click",
+            "action": "click #submit"
+          }
+        }
+      ]
+    }
+  ],
+  "env": {
+    "use_real_env": false,
+    "env_kwargs": {}
+  }
+}

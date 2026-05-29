@@ -1,0 +1,15 @@
+{
+  "trace_id": "smoke-e3-microbench",
+  "run_id": "smoke-run",
+  "experiment": "E3.1",
+  "workload": "microbench",
+  "variants": {
+    "n_concurrent": [2, 8],
+    "transactions_per_run": 200,
+    "runs_per_config": 3,
+    "baselines": ["No-Tx", "No-Frontier", "Tx-Full"]
+  },
+  "resources": ["A", "B"],
+  "initial_state": {"A": 1000, "B": 1000},
+  "transfer": {"min": 1, "max": 50}
+}

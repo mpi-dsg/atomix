@@ -1,0 +1,18 @@
+{
+  "trace_id": "e2-osworld",
+  "run_id": "local-run",
+  "experiment": "E2",
+  "workload": "osworld",
+  "result_dir": "results/osworld",
+  "runner": {
+    "workdir": ".",
+    "script": "scripts/run_osworld_atomix.py",
+    "args": {
+      "demo": false,
+      "task": "bb5e4c0d-f964-439c-97b6-bdb9747de3f4",
+      "provider": "docker",
+      "headless": true,
+      "max-steps": 100
+    }
+  }
+}

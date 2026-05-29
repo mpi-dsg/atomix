@@ -1,0 +1,15 @@
+{
+  "trace_id": "smoke-e3-out-of-order",
+  "run_id": "smoke-run",
+  "experiment": "E3.2",
+  "workload": "out_of_order",
+  "variants": {
+    "delay_variance": ["low"],
+    "runs_per_config": 5,
+    "baselines": ["No-Tx", "Tx-Full"],
+    "transactions_per_run": 50
+  },
+  "delay_ranges_ms": {
+    "low": [0, 100]
+  }
+}

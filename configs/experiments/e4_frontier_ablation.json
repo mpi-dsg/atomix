@@ -1,0 +1,15 @@
+{
+  "trace_id": "e4-frontier",
+  "run_id": "local-run",
+  "experiment": "E4",
+  "workload": "microbench",
+  "variants": {
+    "n_concurrent": [2, 4, 8, 16, 32, 64],
+    "transactions_per_run": 1000,
+    "runs_per_config": 20,
+    "atomix_variants": ["Tx-Full", "No-Frontier", "No-Tx"]
+  },
+  "resources": ["A", "B"],
+  "initial_state": {"A": 1000, "B": 1000},
+  "transfer": {"min": 1, "max": 100}
+}

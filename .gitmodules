@@ -1,0 +1,6 @@
+[submodule "workloads/osworld"]
+	path = workloads/osworld
+	url = https://github.com/xlang-ai/OSWorld
+[submodule "workloads/webarena"]
+	path = workloads/webarena
+	url = https://github.com/web-arena-x/webarena

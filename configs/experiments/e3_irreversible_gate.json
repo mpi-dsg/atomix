@@ -1,0 +1,12 @@
+{
+  "trace_id": "e3-irreversible-gate",
+  "run_id": "local-run",
+  "experiment": "E3.7",
+  "workload": "irreversible_gate",
+  "variants": {
+    "n_steps": 10,
+    "n_irreversible": 2,
+    "fault_probabilities": [0.0, 0.3],
+    "runs_per_config": 100
+  }
+}

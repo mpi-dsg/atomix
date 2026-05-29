@@ -1,0 +1,13 @@
+{
+  "trace_id": "e3-spec-discard",
+  "run_id": "local-run",
+  "experiment": "E3.3",
+  "workload": "speculative_discard",
+  "variants": {
+    "k_branches": [2, 4, 8, 16],
+    "runs_per_config": 50
+  },
+  "observer": {
+    "poll_ms": 50
+  }
+}

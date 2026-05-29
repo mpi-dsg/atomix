@@ -1,0 +1,6 @@
+{
+  "trace_id": "e10-annotation-errors",
+  "run_id": "local-run",
+  "experiment": "E10",
+  "workload": "annotation_errors"
+}

@@ -1,0 +1,16 @@
+{
+  "trace_id": "e3-microbench-seq",
+  "run_id": "local-run",
+  "experiment": "E3.1",
+  "workload": "microbench",
+  "scenario": "sequential",
+  "variants": {
+    "n_concurrent": [1, 2, 4],
+    "transactions_per_run": 500,
+    "runs_per_config": 10,
+    "baselines": ["No-Tx", "Tx-Full"]
+  },
+  "resources": ["A", "B", "C"],
+  "initial_state": {"A": 1000, "B": 1000, "C": 1000},
+  "sequential_amount": 1
+}

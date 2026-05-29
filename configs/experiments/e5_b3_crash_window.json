@@ -1,0 +1,6 @@
+{
+  "trace_id": "e5-b3-crash-window",
+  "run_id": "local-run",
+  "experiment": "E5-B3",
+  "workload": "crash_window"
+}

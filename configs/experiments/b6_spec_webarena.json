@@ -1,0 +1,6 @@
+{
+  "trace_id": "b6-spec-webarena",
+  "run_id": "local-run",
+  "experiment": "B6",
+  "workload": "spec_webarena"
+}

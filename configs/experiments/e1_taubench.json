@@ -1,0 +1,16 @@
+{
+  "trace_id": "e1-taubench",
+  "run_id": "local-run",
+  "experiment": "E1",
+  "workload": "taubench",
+  "result_dir": "results/taubench",
+  "runner": {
+    "args": {
+      "domain": "retail",
+      "agent-llm": "gpt-4.1",
+      "user-llm": "gpt-4.1",
+      "num-trials": 1,
+      "num-tasks": 10
+    }
+  }
+}

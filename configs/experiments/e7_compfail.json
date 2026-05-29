@@ -1,0 +1,6 @@
+{
+  "trace_id": "e7-compfail",
+  "run_id": "local-run",
+  "experiment": "E7",
+  "workload": "compfail"
+}

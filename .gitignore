@@ -1,0 +1,62 @@
+.venv/
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+.DS_Store
+logs/
+*.log
+.pytest_cache/
+.ruff_cache/
+.mypy_cache/
+.tox/
+.nox/
+.coverage
+.coverage.*
+coverage.xml
+htmlcov/
+.hypothesis/
+.ipynb_checkpoints/
+
+# Environment (secrets)
+.env
+.env.*
+!.env.example
+
+# Results (generated)
+results/
+runs/
+data/
+
+# Editor/IDE
+.idea/
+.vscode/
+*.swp
+
+# Build artifacts
+*.egg-info/
+src/*.egg-info/
+dist/
+build/
+pip-wheel-metadata/
+
+# Local artifacts / internal dev notes
+audit_status.txt
+experiments.md
+FIXES_STATUS.md
+EXPERT_REQUEST.md
+CODE_CHANGES.md
+TODO.md
+paper_additions.md
+
+docs/cost_estimate.md
+
+# Symlinks to other repos
+paper
+
+# Local workload experiments
+workloads/swebench/
+.claude/
+.code-review/
+trash/
+_archive/

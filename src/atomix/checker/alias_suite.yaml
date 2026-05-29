@@ -1,0 +1,411 @@
+# Adversarial alias suite (A6) — see EVALUATION-EXECUTION-PLAN.md §A6.
+# Target: ≥50 cases per substrate. This file is the seed set (~15 per
+# substrate); students extend per the plan. Each case proves canonical
+# scope matching is load-bearing: Tx-NaiveStringScopes will miss every
+# `should-conflict` case below.
+
+cases:
+
+  # ============================================================
+  # Filesystem aliases
+  # ============================================================
+  - name: fs.identical_paths
+    substrate: filesystem
+    scope_a: "fs:/repo/src/main.py"
+    scope_b: "fs:/repo/src/main.py"
+    label: should-conflict
+    notes: degenerate sanity case
+
+  - name: fs.dotdot_collapse
+    substrate: filesystem
+    scope_a: "fs:/repo/src/../src/main.py"
+    scope_b: "fs:/repo/src/main.py"
+    label: should-conflict
+    notes: ".. should normalize"
+
+  - name: fs.trailing_slash
+    substrate: filesystem
+    scope_a: "fs:/repo/src/"
+    scope_b: "fs:/repo/src"
+    label: should-conflict
+    notes: trailing slash on directory
+
+  - name: fs.absolute_vs_normalized
+    substrate: filesystem
+    scope_a: "fs:/repo/./src/main.py"
+    scope_b: "fs:/repo/src/main.py"
+    label: should-conflict
+    notes: "./ should collapse"
+
+  - name: fs.case_fold_macos
+    substrate: filesystem
+    scope_a: "fs:/repo/SRC/Main.py"
+    scope_b: "fs:/repo/src/main.py"
+    label: should-conflict
+    notes: case-insensitive on Darwin volumes
+
+  - name: fs.distinct_files
+    substrate: filesystem
+    scope_a: "fs:/repo/src/main.py"
+    scope_b: "fs:/repo/src/util.py"
+    label: should-not-conflict
+    notes: different filenames in same dir
+
+  - name: fs.distinct_subdirs
+    substrate: filesystem
+    scope_a: "fs:/repo/src/main.py"
+    scope_b: "fs:/repo/tests/main.py"
+    label: should-not-conflict
+    notes: same basename, different dirs
+
+  - name: fs.glob_vs_concrete_match
+    substrate: filesystem
+    scope_a: "fs:/repo/src/**"
+    scope_b: "fs:/repo/src/**"
+    label: should-conflict
+    notes: identical globs
+
+  - name: fs.glob_vs_concrete_distinct
+    substrate: filesystem
+    scope_a: "fs:/repo/src/**"
+    scope_b: "fs:/repo/src/main.py"
+    label: should-not-conflict
+    notes: glob and concrete are different canonical scopes; overlap is detected by separate logic
+
+  - name: fs.empty_segment
+    substrate: filesystem
+    scope_a: "fs:/repo//src/main.py"
+    scope_b: "fs:/repo/src/main.py"
+    label: should-conflict
+    notes: double-slash should collapse
+
+  - name: fs.unicode_normal
+    substrate: filesystem
+    scope_a: "fs:/repo/src/café.py"
+    scope_b: "fs:/repo/src/café.py"
+    label: should-conflict
+    notes: identical unicode
+
+  - name: fs.deep_dotdot
+    substrate: filesystem
+    scope_a: "fs:/a/b/c/../../b/c/file"
+    scope_b: "fs:/a/b/c/file"
+    label: should-conflict
+    notes: nested .. collapsing
+
+  - name: fs.distinct_ext
+    substrate: filesystem
+    scope_a: "fs:/data/x.csv"
+    scope_b: "fs:/data/x.json"
+    label: should-not-conflict
+    notes: same stem, different extension
+
+  - name: fs.parent_vs_child
+    substrate: filesystem
+    scope_a: "fs:/data"
+    scope_b: "fs:/data/x.csv"
+    label: should-not-conflict
+    notes: parent and child are distinct scopes (overlap is a separate matter)
+
+  - name: fs.dot_segment
+    substrate: filesystem
+    scope_a: "fs:/repo/./src/./main.py"
+    scope_b: "fs:/repo/src/main.py"
+    label: should-conflict
+    notes: many ./ should collapse
+
+  # ============================================================
+  # τ-bench entity aliases
+  # ============================================================
+  - name: tb.customer_by_id
+    substrate: taubench
+    scope_a: "taubench:customer:id=42"
+    scope_b: "taubench:customer:id=42"
+    label: should-conflict
+    notes: identical id
+
+  - name: tb.customer_id_vs_email_unresolved
+    substrate: taubench
+    scope_a: "taubench:customer:id=42"
+    scope_b: "taubench:customer:email=alice@example.com"
+    label: should-not-conflict
+    notes: without DB resolution, treat as distinct keys; resolution layer handles aliasing
+
+  - name: tb.order_by_id
+    substrate: taubench
+    scope_a: "taubench:order:id=7"
+    scope_b: "taubench:order:id=7"
+    label: should-conflict
+    notes: same order
+
+  - name: tb.order_by_id_distinct
+    substrate: taubench
+    scope_a: "taubench:order:id=7"
+    scope_b: "taubench:order:id=8"
+    label: should-not-conflict
+    notes: different order ids
+
+  - name: tb.order_by_id_vs_by_customer_time
+    substrate: taubench
+    scope_a: "taubench:order:id=7"
+    scope_b: "taubench:order:customer=42,t=2026-01-01T10:00:00"
+    label: should-not-conflict
+    notes: composite alias not auto-resolvable to id; key family differs
+
+  - name: tb.refund_by_order
+    substrate: taubench
+    scope_a: "taubench:refund:id=99"
+    scope_b: "taubench:refund:id=99"
+    label: should-conflict
+    notes: same refund
+
+  - name: tb.different_entity_same_pk
+    substrate: taubench
+    scope_a: "taubench:customer:id=7"
+    scope_b: "taubench:order:id=7"
+    label: should-not-conflict
+    notes: same pk, different entity
+
+  - name: tb.email_normalized_case
+    substrate: taubench
+    scope_a: "taubench:customer:email=Alice@example.com"
+    scope_b: "taubench:customer:email=alice@example.com"
+    label: should-not-conflict
+    notes: we do NOT lower-case emails in canonicalization (would mask security-relevant differences)
+
+  - name: tb.composite_with_different_time
+    substrate: taubench
+    scope_a: "taubench:order:customer=42,t=2026-01-01T10:00:00"
+    scope_b: "taubench:order:customer=42,t=2026-01-01T11:00:00"
+    label: should-not-conflict
+    notes: same customer, different timestamp
+
+  - name: tb.composite_identical
+    substrate: taubench
+    scope_a: "taubench:order:customer=42,t=2026-01-01T10:00:00"
+    scope_b: "taubench:order:customer=42,t=2026-01-01T10:00:00"
+    label: should-conflict
+    notes: identical composite
+
+  - name: tb.zero_padded_id
+    substrate: taubench
+    scope_a: "taubench:customer:id=00042"
+    scope_b: "taubench:customer:id=42"
+    label: should-not-conflict
+    notes: we treat as strings; semantic equality is the DB layer's job
+
+  - name: tb.distinct_customers
+    substrate: taubench
+    scope_a: "taubench:customer:id=42"
+    scope_b: "taubench:customer:id=43"
+    label: should-not-conflict
+    notes: different customers
+
+  - name: tb.large_ids
+    substrate: taubench
+    scope_a: "taubench:order:id=9223372036854775807"
+    scope_b: "taubench:order:id=9223372036854775807"
+    label: should-conflict
+    notes: int64 max
+
+  - name: tb.refund_by_customer_time
+    substrate: taubench
+    scope_a: "taubench:refund:customer=42,t=2026-01-01T10:00:00"
+    scope_b: "taubench:refund:customer=42,t=2026-01-01T10:00:00"
+    label: should-conflict
+    notes: composite refund key
+
+  - name: tb.email_distinct
+    substrate: taubench
+    scope_a: "taubench:customer:email=alice@example.com"
+    scope_b: "taubench:customer:email=bob@example.com"
+    label: should-not-conflict
+    notes: different emails
+
+  # ============================================================
+  # Browser DOM aliases
+  # ============================================================
+  - name: dom.identical_id
+    substrate: dom
+    scope_a: "dom://shopping/id=submit"
+    scope_b: "dom://shopping/id=submit"
+    label: should-conflict
+    notes: identical id selector
+
+  - name: dom.id_vs_xpath_unresolved
+    substrate: dom
+    scope_a: "dom://shopping/id=submit"
+    scope_b: "dom://shopping/xpath=//button[@id='submit']"
+    label: should-not-conflict
+    notes: different selector kinds; resolution layer handles equivalence at runtime
+
+  - name: dom.xpath_whitespace
+    substrate: dom
+    scope_a: "dom://shopping/xpath=//button[@id='submit']"
+    scope_b: "dom://shopping/xpath=  //button[@id='submit']  "
+    label: should-conflict
+    notes: whitespace in xpath collapsed
+
+  - name: dom.different_pages_same_id
+    substrate: dom
+    scope_a: "dom://shopping/id=submit"
+    scope_b: "dom://admin/id=submit"
+    label: should-not-conflict
+    notes: same selector, different pages
+
+  - name: dom.aria_vs_id
+    substrate: dom
+    scope_a: "dom://shopping/aria=Submit order"
+    scope_b: "dom://shopping/id=submit"
+    label: should-not-conflict
+    notes: aria and id are different selector families
+
+  - name: dom.css_vs_xpath
+    substrate: dom
+    scope_a: "dom://shopping/css=button#submit"
+    scope_b: "dom://shopping/xpath=//button[@id='submit']"
+    label: should-not-conflict
+    notes: different selector families
+
+  - name: dom.identical_aria
+    substrate: dom
+    scope_a: "dom://shopping/aria=Submit order"
+    scope_b: "dom://shopping/aria=Submit order"
+    label: should-conflict
+    notes: same aria label
+
+  - name: dom.distinct_aria
+    substrate: dom
+    scope_a: "dom://shopping/aria=Submit order"
+    scope_b: "dom://shopping/aria=Cancel order"
+    label: should-not-conflict
+    notes: different aria labels
+
+  - name: dom.identical_css
+    substrate: dom
+    scope_a: "dom://shopping/css=#cart > button.primary"
+    scope_b: "dom://shopping/css=#cart > button.primary"
+    label: should-conflict
+    notes: identical css selectors
+
+  - name: dom.css_normalize_spaces
+    substrate: dom
+    scope_a: "dom://shopping/css=#cart  >  button.primary"
+    scope_b: "dom://shopping/css=#cart > button.primary"
+    label: should-not-conflict
+    notes: we do NOT normalize CSS whitespace (different combinators); doc the limitation
+
+  - name: dom.deep_xpath_distinct
+    substrate: dom
+    scope_a: "dom://shopping/xpath=//div[@class='cart']/button[1]"
+    scope_b: "dom://shopping/xpath=//div[@class='cart']/button[2]"
+    label: should-not-conflict
+    notes: different xpath positions
+
+  - name: dom.same_id_two_pages
+    substrate: dom
+    scope_a: "dom://gitlab/id=login"
+    scope_b: "dom://forum/id=login"
+    label: should-not-conflict
+    notes: id `login` exists on multiple pages but they are different elements
+
+  - name: dom.empty_page
+    substrate: dom
+    scope_a: "dom:///id=root"
+    scope_b: "dom:///id=root"
+    label: should-conflict
+    notes: empty page id (same)
+
+  - name: dom.subpath_page
+    substrate: dom
+    scope_a: "dom://shopping/admin/id=table"
+    scope_b: "dom://shopping/id=table"
+    label: should-not-conflict
+    notes: page path differs
+
+  # ============================================================
+  # Read-write dependency aliases
+  # ============================================================
+  - name: rw.inv_read_then_order
+    substrate: rw_dep
+    scope_a: "inv:item:42"
+    scope_b: "order:7(consumes=inv:item:42)"
+    label: should-conflict
+    notes: order's create-side aliases the inventory key it consumes
+
+  - name: rw.inv_read_then_distinct_order
+    substrate: rw_dep
+    scope_a: "inv:item:42"
+    scope_b: "order:7(consumes=inv:item:99)"
+    label: should-not-conflict
+    notes: order consumes a different inventory item
+
+  - name: rw.inv_distinct
+    substrate: rw_dep
+    scope_a: "inv:item:42"
+    scope_b: "inv:item:43"
+    label: should-not-conflict
+    notes: different inventory items
+
+  - name: rw.inv_identical
+    substrate: rw_dep
+    scope_a: "inv:item:42"
+    scope_b: "inv:item:42"
+    label: should-conflict
+    notes: same inventory key
+
+  - name: rw.composite_consumes_match
+    substrate: rw_dep
+    scope_a: "order:7(consumes=inv:item:42)"
+    scope_b: "order:8(consumes=inv:item:42)"
+    label: should-conflict
+    notes: two orders consuming the same inventory; both alias the same inv key
+
+  - name: rw.consumes_only_match
+    substrate: rw_dep
+    scope_a: "order:7(consumes=inv:item:42)"
+    scope_b: "inv:item:42"
+    label: should-conflict
+    notes: dual of the first case
+
+  - name: rw.refund_aliases_order
+    substrate: rw_dep
+    scope_a: "order:7"
+    scope_b: "refund:99(of=order:7)"
+    label: should-conflict
+    notes: refund's effect is on the order it refunds
+
+  - name: rw.refund_distinct_order
+    substrate: rw_dep
+    scope_a: "order:7"
+    scope_b: "refund:99(of=order:8)"
+    label: should-not-conflict
+    notes: refund of a different order
+
+  - name: rw.session_distinct
+    substrate: rw_dep
+    scope_a: "session:abc"
+    scope_b: "session:def"
+    label: should-not-conflict
+    notes: independent sessions
+
+  - name: rw.session_identical
+    substrate: rw_dep
+    scope_a: "session:abc"
+    scope_b: "session:abc"
+    label: should-conflict
+    notes: same session
+
+  - name: rw.cart_alias
+    substrate: rw_dep
+    scope_a: "cart:user=42"
+    scope_b: "cart:user=42"
+    label: should-conflict
+    notes: same user cart
+
+  - name: rw.cart_distinct
+    substrate: rw_dep
+    scope_a: "cart:user=42"
+    scope_b: "cart:user=43"
+    label: should-not-conflict
+    notes: different user carts

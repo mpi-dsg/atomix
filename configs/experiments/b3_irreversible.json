@@ -1,0 +1,6 @@
+{
+  "trace_id": "b3-irreversible",
+  "run_id": "local-run",
+  "experiment": "E4",
+  "workload": "irreversible_sink"
+}

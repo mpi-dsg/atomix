@@ -1,0 +1,7 @@
+{
+  "trace_id": "sample-trace",
+  "tasks": [
+    {"tool": "file_write", "args": {"path": "results/sample_a.txt", "content": "hello atomix"}},
+    {"tool": "file_write", "args": {"path": "results/sample_b.txt", "content": "branch-safe"}}
+  ]
+}

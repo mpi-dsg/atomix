@@ -1,0 +1,21 @@
+{
+  "trace_id": "smoke-e2-webarena",
+  "run_id": "smoke-run",
+  "experiment": "E2",
+  "workload": "webarena",
+  "result_dir": "results/webarena",
+  "runner": {
+    "script": "run.py",
+    "args": {
+      "instruction_path": "agent/prompts/jsons/p_cot_id_actree_2s.json",
+      "test_start_idx": 0,
+      "test_end_idx": 1,
+      "result_dir": "results/webarena",
+      "model": "gpt-4o-mini",
+      "provider": "openai"
+    }
+  },
+  "env": {
+    "WEBARENA_USE_REAL_ENV": "0"
+  }
+}

@@ -1,0 +1,13 @@
+{
+  "trace_id": "smoke-e3-spec-discard",
+  "run_id": "smoke-run",
+  "experiment": "E3.3",
+  "workload": "speculative_discard",
+  "variants": {
+    "k_branches": [2, 4],
+    "runs_per_config": 20
+  },
+  "observer": {
+    "poll_ms": 200
+  }
+}

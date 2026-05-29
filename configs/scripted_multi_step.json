@@ -1,0 +1,17 @@
+[
+  {"action_type": "click", "args": {"x": 500, "y": 400}},
+  {"action_type": "typing", "args": {"text": "test input"}},
+  {"action_type": "click", "args": {"x": 600, "y": 300}},
+  {"action_type": "scroll", "args": {"x": 500, "y": 400, "direction": "down", "amount": 3}},
+  {"action_type": "click", "args": {"x": 400, "y": 500}},
+  {"action_type": "typing", "args": {"text": "another action"}},
+  {"action_type": "hotkey", "args": {"keys": ["ctrl", "s"]}},
+  {"action_type": "click", "args": {"x": 700, "y": 200}},
+  {"action_type": "scroll", "args": {"x": 500, "y": 400, "direction": "up", "amount": 2}},
+  {"action_type": "click", "args": {"x": 300, "y": 600}},
+  {"action_type": "typing", "args": {"text": "final step"}},
+  {"action_type": "hotkey", "args": {"keys": ["ctrl", "enter"]}},
+  {"action_type": "click", "args": {"x": 500, "y": 500}},
+  {"action_type": "scroll", "args": {"x": 500, "y": 300, "direction": "down", "amount": 5}},
+  {"action_type": "done", "args": {}}
+]

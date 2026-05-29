@@ -1,0 +1,15 @@
+{
+  "trace_id": "osworld-demo",
+  "tasks": [
+    {
+      "id": "os-1",
+      "name": "write-file",
+      "description": "write then verify",
+      "steps": [
+        {"tool": "write_file", "args": {"path": "out.txt", "content": "hello"}},
+        {"tool": "append_file", "args": {"path": "out.txt", "content": " world"}},
+        {"tool": "read_file", "args": {"path": "out.txt"}}
+      ]
+    }
+  ]
+}

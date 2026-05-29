@@ -1,0 +1,6 @@
+{
+  "trace_id": "b9-agent-faults",
+  "run_id": "local-run",
+  "experiment": "B9",
+  "workload": "agent_faults"
+}

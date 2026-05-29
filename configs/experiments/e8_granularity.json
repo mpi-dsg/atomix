@@ -1,0 +1,6 @@
+{
+  "trace_id": "e8-granularity",
+  "run_id": "local-run",
+  "experiment": "E8",
+  "workload": "granularity"
+}

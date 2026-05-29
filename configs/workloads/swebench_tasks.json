@@ -1,0 +1,13 @@
+{
+  "trace_id": "swebench-demo",
+  "tasks": [
+    {
+      "id": "swe-1",
+      "name": "placeholder",
+      "repo_path": "repos/example",
+      "instructions": "apply patch and run tests",
+      "patch_file": "patch.diff",
+      "test_command": "pytest -q"
+    }
+  ]
+}

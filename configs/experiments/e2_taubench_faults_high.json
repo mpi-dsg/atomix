@@ -1,0 +1,17 @@
+{
+  "trace_id": "e2-taubench-faults-high",
+  "run_id": "local-run",
+  "experiment": "E2",
+  "workload": "taubench",
+  "result_dir": "results/taubench_faults_high",
+  "runner": {
+    "args": {
+      "domain": "retail",
+      "agent-llm": "gpt-4o",
+      "user-llm": "gpt-4o",
+      "num-trials": 1,
+      "num-tasks": 5,
+      "fault-probability": 0.2
+    }
+  }
+}
